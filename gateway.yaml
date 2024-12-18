@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  cloud: 
+   gateway: 
+    routes:
+      - id: compra
+        uri: lb://compra
+        predicates:
+          - Path=/compra/**
+      - id: event
+        uri: lb://event
+        predicates:
+          - Path=/event/**
+      - id: ticket
+        uri: lb://ticket
+        predicates:
+          - Path=/ticket/**
+      - id: user
+        uri: lb://user
+        predicates:
+          - Path=/user/**    
