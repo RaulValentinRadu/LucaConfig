@@ -23,31 +23,23 @@ spring:
           - Path=/user/**    
 
 
-      #Swagger docs
-      - id: compra-docs
-        uri: lb://compra
-        predicates:
-          - Path=/compra/api-docs
-        filters:
-          - RewritePath=/compra/api-docs, /v3/api-docs
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Enable discovery of services from service registry (e.g., Eureka, Consul)
 
-      - id: event-docs
-        uri: lb://event
-        predicates:
-          - Path=/event/api-docs
-        filters:
-          - RewritePath=/event/api-docs, /v3/api-docs
-
-      - id: ticket-docs
-        uri: lb://ticket
-        predicates:
-          - Path=/ticket/api-docs
-        filters:
-          - RewritePath=/ticket/api-docs, /v3/api-docs
-
-      - id: user-docs
-        uri: lb://user
-        predicates:
-          - Path=/user/api-docs
-        filters:
-          - RewritePath=/user/api-docs, /v3/api-docs
+  # Enable OpenAPI Aggregation and Swagger UI in Gateway
+  springdoc:
+    api-docs:
+      enabled: true
+      # Automatically aggregate OpenAPI docs from the registered services
+      group-configs:
+        - group: default
+          paths-to-match: /**/v3/api-docs
+    swagger-ui:
+      enabled: true
+      path: /swagger-ui.html
+      # Swagger UI can load combined docs from /v3/api-docs
+      url: /v3/api-docs
