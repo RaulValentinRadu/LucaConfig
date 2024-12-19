@@ -20,26 +20,4 @@ spring:
       - id: user
         uri: lb://user
         predicates:
-          - Path=/user/**    
-
-
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true  # Enable discovery of services from service registry (e.g., Eureka, Consul)
-
-  # Enable OpenAPI Aggregation and Swagger UI in Gateway
-  springdoc:
-    api-docs:
-      enabled: true
-      # Automatically aggregate OpenAPI docs from the registered services
-      group-configs:
-        - group: default
-          paths-to-match: /**/v3/api-docs
-    swagger-ui:
-      enabled: true
-      path: /swagger-ui.html
-      # Swagger UI can load combined docs from /v3/api-docs
-      url: /v3/api-docs
+          - Path=/user/**
