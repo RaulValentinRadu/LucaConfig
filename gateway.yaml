@@ -21,3 +21,33 @@ spring:
         uri: lb://user
         predicates:
           - Path=/user/**    
+
+
+      #Swagger docs
+      - id: compra-docs
+        uri: lb://compra
+        predicates:
+          - Path=/compra/api-docs
+        filters:
+          - RewritePath=/compra/api-docs, /v3/api-docs
+
+      - id: event-docs
+        uri: lb://event
+        predicates:
+          - Path=/event/api-docs
+        filters:
+          - RewritePath=/event/api-docs, /v3/api-docs
+
+      - id: ticket-docs
+        uri: lb://ticket
+        predicates:
+          - Path=/ticket/api-docs
+        filters:
+          - RewritePath=/ticket/api-docs, /v3/api-docs
+
+      - id: user-docs
+        uri: lb://user
+        predicates:
+          - Path=/user/api-docs
+        filters:
+          - RewritePath=/user/api-docs, /v3/api-docs
