@@ -21,3 +21,16 @@ spring:
         uri: lb://user
         predicates:
           - Path=/user/**
+springdoc:
+  swagger-ui:
+    url: /v3/api-docs
+    path: /swagger-ui.html
+    urls:
+      - name: event
+        url: /event/v3/api-docs
+      - name: user
+        url: /user/v3/api-docs
+      - name: ticket
+        url: /ticket/v3/api-docs
+      - name: compra
+        url: /compra/v3/api-docs
